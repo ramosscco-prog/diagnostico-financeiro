@@ -1119,16 +1119,25 @@
     const userInfo = {name, email, dateDisplay};
     const medias = { gastos:gastosAvg, invest:investAvg, ganhos:ganhosAvg, geral:geralAvg };
     const classes = { gastos:classGastos, invest:classInvest, ganhos:classGanhos };
-    const pdf = buildPDF(userInfo, scores, medias, classes, geralDesc);
     const nomeArquivo = "Diagnostico_Financeiro_" + name.replace(/[^\wÀ-ÿ]+/g,"_") + ".pdf";
-
-    // clique PDF -> download
-    btnPDF.onclick = ()=>{ pdf.save(nomeArquivo); };
-
-    // envio automático por e-mail (cliente + cópia para o mentor)
     const btnGen = document.getElementById("btnGenerate");
     btnGen.disabled = true;
-    enviarResultado(userInfo, medias, classes, pdf).finally(()=>{ btnGen.disabled = false; });
+    setStatus("Preparando seu relatório...", "wait");
+
+    // espera o gráfico aparecer na tela antes de montar o PDF
+    setTimeout(async ()=>{
+      try{
+        if(radarChart){ radarChart.resize(); radarChart.update("none"); }
+        const pdf = buildPDF(userInfo, scores, medias, classes, geralDesc);
+        btnPDF.onclick = ()=>{ pdf.save(nomeArquivo); };
+        // envio automático por e-mail (cliente + cópia para o mentor)
+        await enviarResultado(userInfo, medias, classes, pdf);
+      } catch(e){
+        setStatus("Não foi possível gerar o relatório: " + e.message, "err");
+      } finally {
+        btnGen.disabled = false;
+      }
+    }, 400);
   });
 
 })();
