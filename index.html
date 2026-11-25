@@ -315,7 +315,7 @@
 
 <!-- Cabeçalho de marca / identidade provisória -->
 <div class="brand-header">
-  <div class="brand-title">Mentoria Financeira — Fernando Ramos</div>
+  <div class="brand-title">Mentoria Financeira — Dr. Fernando Ramos</div>
   <div class="brand-name">Diagnóstico Financeiro Pessoal</div>
   <div class="brand-tagline">Clareza • Consistência • Ação em 30 dias</div>
 </div>
@@ -398,7 +398,7 @@
 
     <div class="disclaimer">
       Ao gerar a análise, o relatório em PDF será enviado para o e-mail informado,
-      com cópia para o mentor Fernando Ramos, para uso exclusivo na mentoria individual.
+      com cópia para o mentor Dr. Fernando Ramos, para uso exclusivo na mentoria individual.
     </div>
   </div>
 
@@ -860,7 +860,7 @@
       pdf.setFont("helvetica","normal");
       pdf.setFontSize(8);
       pdf.setTextColor("#777777");
-      const footerText = "Mentoria Financeira — Fernando Ramos | Uso confidencial do mentorado";
+      const footerText = "Mentoria Financeira — Dr. Fernando Ramos | Uso confidencial do mentorado";
       pdf.text(footerText, marginLeft, pageHeight-20);
     }
 
@@ -931,7 +931,7 @@
     }
 
     // ====== Cabeçalho / Marca ======
-    addTitle("Mentoria Financeira — Fernando Ramos");
+    addTitle("Mentoria Financeira — Dr. Fernando Ramos");
     pdf.setFont("helvetica","normal");
     pdf.setFontSize(9);
     pdf.setTextColor("#000000");
@@ -942,7 +942,7 @@
     addSubTitle("Relatório de Diagnóstico Financeiro Pessoal");
     addLine("Nome: " + userInfo.name);
     addLine("Avaliação: " + userInfo.dateDisplay);
-    addLine("Mentoria: Mentoria Financeira — Fernando Ramos");
+    addLine("Mentoria: Mentoria Financeira — Dr. Fernando Ramos");
     addGap(10);
 
     // ====== Visão Geral ======
